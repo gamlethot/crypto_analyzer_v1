@@ -1,7 +1,6 @@
-package CryptoMain;
+package main;
 
 import java.io.IOException;
-import java.nio.file.Path;
 
 public class Main {
 

@@ -1,4 +1,4 @@
-package CryptoMain;
+package alphabet;
 
 public class AlphabetProvider {
     private static final String alphabetString = generateAlphabet();

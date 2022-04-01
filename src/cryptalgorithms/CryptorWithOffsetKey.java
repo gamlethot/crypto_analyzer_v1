@@ -1,4 +1,4 @@
-package CryptoMain;
+package cryptalgorithms;
 
 public class CryptorWithOffsetKey {
 

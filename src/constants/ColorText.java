@@ -1,4 +1,4 @@
-package CryptoMain;
+package constants;
 
 public class ColorText {
 

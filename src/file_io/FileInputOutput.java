@@ -1,4 +1,6 @@
-package CryptoMain;
+package file_io;
+
+import constants.Warnings;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -42,8 +44,10 @@ public class FileInputOutput {
         if (pos > 0) {
             fname = fname.substring(0, pos);
         }
-        Path pathOfWriteFile = Files.createFile(Path.of(pathOfIncomingFile.getParent().toString() + "/"+fname+"_"
-                +LocalTime.now().truncatedTo(ChronoUnit.SECONDS)+"_proceed.txt"));
+       // Path pathOfWriteFile = Files.createFile(Path.of(pathOfIncomingFile.getParent().toString() + "/"+fname+"_"
+       //         +LocalTime.now().truncatedTo(ChronoUnit.SECONDS)+"_proceed.txt"));
+        Path pathOfWriteFile = Files.createFile(Path.of(pathOfIncomingFile.getParent().toString(),fname+"_"
+                      +LocalTime.now().truncatedTo(ChronoUnit.SECONDS)+"_proceed.txt"));
         Files.write(pathOfWriteFile, textToWrite.getBytes());
     }
 

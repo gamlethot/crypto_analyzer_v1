@@ -1,4 +1,12 @@
-package CryptoMain;
+package main;
+
+import alphabet.AlphabetProvider;
+import constants.ColorText;
+import constants.Warnings;
+import cryptalgorithms.CryptorWithOffsetKey;
+import cryptalgorithms.DecryptorWithBruteForce;
+import cryptalgorithms.DecryptorWithOffsetKey;
+import file_io.FileInputOutput;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -170,7 +178,7 @@ public class ConsoleWorkspace {
                         int low = 1;
                         int high = 39;
                         int offsetKey = r.nextInt(high-low) + low;
-                        System.out.println("Your random generated offset key is: "+ColorText.GREEN+offsetKey+ColorText.RESET);
+                        System.out.println("Your random generated offset key is: "+ ColorText.GREEN+offsetKey+ColorText.RESET);
                         cryptWithReadyKey(incomingTEXT, offsetKey, pathOfInputFile);
                         choiceRightChecker=true;
                         break;
