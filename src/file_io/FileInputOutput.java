@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.Scanner;
 
@@ -44,10 +45,9 @@ public class FileInputOutput {
         if (pos > 0) {
             fname = fname.substring(0, pos);
         }
-       // Path pathOfWriteFile = Files.createFile(Path.of(pathOfIncomingFile.getParent().toString() + "/"+fname+"_"
-       //         +LocalTime.now().truncatedTo(ChronoUnit.SECONDS)+"_proceed.txt"));
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH_mm_ss");
         Path pathOfWriteFile = Files.createFile(Path.of(pathOfIncomingFile.getParent().toString(),fname+"_"
-                      +LocalTime.now().truncatedTo(ChronoUnit.SECONDS)+"_proceed.txt"));
+                      +LocalTime.now().format(dtf)+"_proceed.txt"));
         Files.write(pathOfWriteFile, textToWrite.getBytes());
     }
 
