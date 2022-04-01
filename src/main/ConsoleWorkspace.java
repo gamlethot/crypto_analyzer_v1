@@ -56,7 +56,7 @@ public class ConsoleWorkspace {
 
     // МЕТОД ПРОВЕРКИ ПРАВИЛЬНОСТИ ВВОДА ДИРЕКТОРИИ ФАЙЛА И ЕГО СУЩЕСТВОВАНИЯ.
     // ДАЕТ 3 ПОПЫТКИ НЕУДАЧНОГО ВВОДА ПОСЛЕ ЧЕГО ПРОГРАМА ДОЛЖНА ЗАВЕРШАТЬСЯ
-    private void inputPathFileCheck(int choice) throws IOException {
+    private void inputPathFileCheck(int choice)  {
         boolean whileTrue = true;
         String textFromFile = null;
         int count = 3;
@@ -192,8 +192,6 @@ public class ConsoleWorkspace {
 
     // МЕТОД ПРОВЕРКИ КОРРЕКТНОСТИ ВВЕДЕННОГО ВРУЧНУЮ КЛЮЧА СМЕЩЕНИЯ
     private void cryptWithOffsetKey(String incomingTEXT, Path pathOfInputFile, Scanner scanner) {
-
-
         System.out.println("Type in a number from 1 to " + (alphabetLength-1)+":");
         boolean choiceRightChecker2 = false;
         Scanner scanner2 = new Scanner(System.in);

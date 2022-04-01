@@ -11,20 +11,19 @@ public class CryptorWithOffsetKey {
     public String cryptTextWithOffsetKey(String incomingText, int offsetKey) {
         StringBuilder sb = new StringBuilder();
         char[] incomingTextCharArray = incomingText.toCharArray();
-        for (int i = 0; i < incomingTextCharArray.length; i++) {
-            if (incomingTextCharArray[i]=='\n'){
+        for (char value : incomingTextCharArray) {
+            if (value == '\n') {
                 sb.append('\n');
                 continue;
             }
             for (int j = 0; j < alphabetCharArray.length; j++) {
-
-                if (Character.isUpperCase(incomingTextCharArray[i])) {
-                    char temp = Character.toLowerCase(incomingTextCharArray[i]);
+                if (Character.isUpperCase(value)) {
+                    char temp = Character.toLowerCase(value);
                     if (temp == alphabetCharArray[j]) {
                         char c = alphabetCharArray[(j + offsetKey) % alphabetCharArray.length];
                         sb.append(Character.toUpperCase(c));
                     }
-                } else if (incomingTextCharArray[i] == alphabetCharArray[j]) {
+                } else if (value == alphabetCharArray[j]) {
                     sb.append(alphabetCharArray[(j + offsetKey) % alphabetCharArray.length]);
                 }
             }

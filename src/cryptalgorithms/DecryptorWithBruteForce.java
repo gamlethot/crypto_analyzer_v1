@@ -22,7 +22,7 @@ public class DecryptorWithBruteForce {
         char[] incomingCryptoTextCharArray = incomingCryptoText.toCharArray();
         int offsetKey = 0;
         String result = "Text doesn't contain test criterion (dots and comas)";
-        Map<Integer, String> decryptedMap = new HashMap();
+        Map<Integer, String> decryptedMap = new HashMap<>();
         while (offsetKey < alphabetCharArray.length) {
             StringBuilder sb = new StringBuilder();
             for (char cryptoCharValue : incomingCryptoTextCharArray) {
@@ -42,7 +42,7 @@ public class DecryptorWithBruteForce {
                     }
                 }
             }
-            decryptedMap.put(offsetKey, sb.toString());
+            decryptedMap.put(alphabetCharArray.length-offsetKey, sb.toString());
             offsetKey++;
         }
 
@@ -54,9 +54,11 @@ public class DecryptorWithBruteForce {
             String value = decryptedMap.get(key);
             Matcher dotMatcher = dotPattern.matcher(value);
             Matcher comaMatcher = comaPattern.matcher(value);
-            if (dotMatcher.find() && comaMatcher.find()) {
+            boolean dotFound = dotMatcher.find();
+            boolean comaFound = comaMatcher.find();
+            if (dotFound && comaFound) {
                 filteredOneDecryptedMap.put(key, value);
-            } else if (dotMatcher.find() || comaMatcher.find()) {
+            } else if (dotFound || comaFound) {
                 filteredTwoDecryptedMap.put(key, value);
             } else {
                 //System.out.println("None fits criterion. All variants added.\n");
@@ -70,6 +72,11 @@ public class DecryptorWithBruteForce {
             result = chooseCorrectBForceResult(filteredOneDecryptedMap, result);
         } else if (filteredOneDecryptedMap.size() == 1){
             for (var entry : filteredOneDecryptedMap.entrySet()) {
+                System.out.println("Your OFFSET KEY is: "+(entry.getKey()));
+                result = entry.getValue();
+            }
+        } else if (filteredOneDecryptedMap.isEmpty() && filteredTwoDecryptedMap.size()==1){
+            for (var entry : filteredTwoDecryptedMap.entrySet()) {
                 System.out.println("Your OFFSET KEY is: "+(entry.getKey()));
                 result = entry.getValue();
             }
@@ -115,7 +122,12 @@ public class DecryptorWithBruteForce {
 
     private void printMap(Map<Integer, String> filteredOneDecryptedMap) {
         for (var entry : filteredOneDecryptedMap.entrySet()) {
-            System.out.println(entry.getKey() + "   :   " + entry.getValue().substring(0, 100) +"......");
+            if (entry.getValue().length()>=100) {
+                System.out.println(entry.getKey() + "   :   " + entry.getValue().substring(0, 100) + "......");
+            }
+            else {
+                System.out.println(entry.getKey() + "   :   " + entry.getValue() + "......");
+            }
         }
     }
 }
